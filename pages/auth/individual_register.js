@@ -23,7 +23,7 @@ const schema = yup
       .required("Last Name is required.")
       .min(5, "Last name must be longer than 5 characters")
       .max(50, "Last name must be shorter than 50 characters."),
-    emailId: yup
+    email: yup
       .string()
       .email("Please enter a valid e-mail")
       .required("Email is required."),
@@ -50,14 +50,14 @@ export default function Register() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const USER_API_BASE_URL = "http://localhost:8080/api/v1/users";
+  const USER_API_BASE_URL = "http://localhost:8080/api/v1/auth/register";
 
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({
     id: "",
     firstName: "",
     lastName: "",
-    emailId: "",
+    email: "",
     phoneNumber: "",
     password: "",
   });
@@ -178,16 +178,16 @@ export default function Register() {
                       Email
                     </label>
                     <input
-                      {...register("emailId")}
+                      {...register("email")}
                       type="email"
-                      name="emailId"
+                      name="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="p.s example@gmail.com"
-                      value={user.emailId}
+                      value={user.email}
                       onChange={(e) => handleChange(e)}
                     />
                     <small role="alert" className="text-red-500 ">
-                      {errors.emailId?.message}
+                      {errors.email?.message}
                     </small>
                   </div>
                   <div className="relative w-full mb-3">

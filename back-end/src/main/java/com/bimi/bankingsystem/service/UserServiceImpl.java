@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     public User updateUser(Long id, User user) {
         User u =
                 userRepository.findById(id).get();
-        u.setEmailId(user.getEmailId());
+        u.setEmail(user.getEmail());
         u.setFirstName(user.getFirstName());
         u.setLastName(user.getLastName());
         u.setPassword(user.getPassword());
